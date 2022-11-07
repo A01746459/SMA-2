@@ -1,3 +1,3 @@
 # SMA-2
-Aidrian Bravo /n
+Aidrian Bravo 
 Sebastian Burgos 
