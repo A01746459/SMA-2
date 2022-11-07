@@ -1,2 +1,3 @@
 # SMA-2
-Aidrian
+Aidrian Bravo
+Sebastian Burgos 
