@@ -73,7 +73,7 @@ class cleaningModel(Model):
             self.schedule.add(clean)
             self.grid.place_agent(clean,(1,1))
             
-        # ¿?
+        # Colocación aleatoria de la Dirt. 
         for i in range(5):
             dirty = Dirt(self.next_id(),self)
             self.schedule.add(dirty)
