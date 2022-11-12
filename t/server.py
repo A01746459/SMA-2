@@ -65,6 +65,8 @@ class cleaningModel(Model):
         self.height = height
         self.grid = mesa.space.MultiGrid(width, height, True)
         self.schedule = mesa.time.RandomActivation(self)
+        self.currentsteps = 0
+        self.maxsteps = e
         d = (p*(width*height))/100
 
         # Creación de los Agentes
@@ -82,7 +84,11 @@ class cleaningModel(Model):
             self.grid.place_agent(dirty,(x,y))
         
     def step(self):
-        self.schedule.step()
+        self.currentsteps = self.currentsteps + 1
+        if self.currentsteps < self.maxsteps:
+            self.schedule.step()
+        else:
+            self.running = False
 
 #--------------#
 #--- SERVER ---#
@@ -110,6 +116,11 @@ def cleaning_port(agent):
 # Diseño del Canvas y definición de valores. 
 grid = CanvasGrid(cleaning_port, 10, 10, 500, 500)
 server = ModularServer(cleaningModel,[grid],"cleaningModel",{"width":10,"height":10,"x":10,"p":25,"e":100})
+
+chart_element = mesa.visualization.ChartModule(
+    [
+        {"Label":"Dirt","Color":"#AA0000"}
+    ])
 
 # Puerto de salida de transmisión. 
 server.port = 8521 
