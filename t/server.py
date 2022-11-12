@@ -82,7 +82,8 @@ class cleaningModel(Model):
             x = self.random.randrange(self.grid.width)
             y = self.random.randrange(self.grid.height)
             self.grid.place_agent(dirty,(x,y))
-        
+    #Avanzar un step en el schedule, deja de avanzar si el numero de steps 
+    #se exede de un maxsteps definido.
     def step(self):
         self.currentsteps = self.currentsteps + 1
         if self.currentsteps < self.maxsteps:
